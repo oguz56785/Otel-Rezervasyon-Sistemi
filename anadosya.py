@@ -9,7 +9,6 @@ restaurantGelir = 0
 anlikGelir= 0 
 hesap = 0
 i = -1
-j = -1
 while True:
     print("\nMüşteri rezervasyon işlemleri için 1'e basınız.\n")
 
@@ -32,7 +31,7 @@ while True:
         os.system("cls || clear")
         tcNum = int(input("\nTc Kimlik Numaranızı Giriniz: "))
         kayitsorgu.kayitSorgu(musteriler, tcNum, i)
-        if (kayitsorgu.kayitSorgu2(musteriler, tcNum, j) != True):
+        if (kayitsorgu.kayitSorgu2(musteriler, tcNum, i) != True):
             print("\n!!!KAYIT BULUNAMADI!!!\n")
     elif (sorgu == 3):
         os.system("cls || clear")
