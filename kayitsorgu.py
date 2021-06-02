@@ -1,49 +1,21 @@
 
-def kayitSorgu(musteriler, tcNum, i):
-    while True:
-        i = i + 1
-        if (len(musteriler) != 0):
-            if (musteriler[i].tcNo == tcNum):
-                print("\nTc Kimlik Numarası: ", musteriler[i].tcNo)
-                print("\nAd: ", musteriler[i].ad)
-                print("\nSoyad: ", musteriler[i].soyAd)
-                print("\nTel Numarası: ", musteriler[i].telNo)
-                print("\nTarih : ", musteriler[i].tarih)
-                print("\nKalınacak gün sayısı : ", musteriler[i].kalinacakGun)
-                print("\nOda numarası : ", musteriler[i].odaNo)
-                print(f"\nÜcret : {musteriler[i].ucret}(ÖDENMİŞ)")
-                break
-            else:
-                return True
-        else:
-            break
-
-def kayitSorgu2(musteriler, tcNum, j):
-    while True:
-        j = j + 1
-        if (len(musteriler) != 0):
-            if (musteriler[j].tcNo == tcNum):
-                return True
-            else:
-                return False
-        else:
-            print("\n!!OTELDE KAYIT BULUNMUYOR!!\n")
-            break  
-
-
-# def odaNoSorgu(musteriler, odaNo, hesap, restaurantGelir):
-#     for i in range(len(musteriler)):
-#         if (musteriler[i].odaNo == odaNo):
-#             restaurantGelir = restaurantGelir + hesap
-#             musteriler[i].ucret = musteriler[i].ucret + hesap
+def kayitSorgu(im, tcNum):
+    im.execute(f"SELECT * FROM musteriler WHERE TCNO = '{tcNum}'")
+    veri = im.fetchall()
+    if (len(veri) != 0):
+        print("\nTc Kimlik Numarası: ", veri[0][0])
+        print("\nAd: ", veri[0][1])
+        print("\nSoyad: ", veri[0][2])
+        print("\nTel Numarası: ", veri[0][3])
+        print("\nTarih : ", veri[0][4])
+        print("\nKalınacak gün sayısı : ", veri[0][5])
+        print("\nOda numarası : ", veri[0][6])
+        print(f"\nÜcret : {veri[0][7]} TL(ÖDENMİŞ)")
+    else:
+        print("\n!!KAYIT BULUNAMADI!!\n")
 
 def personelSorgu(sifre):
     if (sifre == 123456):
         return True
     else:
         return False
-        
-
-
-
-

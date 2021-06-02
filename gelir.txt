@@ -1,0 +1,3 @@
+                        Anlık toplam otel geliri: 0
+                        Anlık toplam restaurant geliri: 0
+                        Anlık net otel geliri: 0

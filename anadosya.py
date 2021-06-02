@@ -3,12 +3,17 @@ import kayitsorgu
 import rezervbitir
 import restaurant
 import os
+import sqlite3
 musteriler = []
 gelir = 0
 restaurantGelir = 0
 anlikGelir= 0 
 hesap = 0
 i = -1
+
+baglanti = sqlite3.connect("Musteriler.db")
+im = baglanti.cursor()
+
 while True:
     print("\nMüşteri rezervasyon işlemleri için 1'e basınız.\n")
 
@@ -26,17 +31,15 @@ while True:
 
     if (sorgu == 1):
         os.system("cls || clear")
-        gelir = gelir + rezervasyon.kayit(musteriler, gelir)
+        gelir = gelir + rezervasyon.kayit(gelir, im, baglanti)
     elif (sorgu == 2):
         os.system("cls || clear")
         tcNum = int(input("\nTc Kimlik Numaranızı Giriniz: "))
-        kayitsorgu.kayitSorgu(musteriler, tcNum, i)
-        if (kayitsorgu.kayitSorgu2(musteriler, tcNum, i) != True):
-            print("\n!!!KAYIT BULUNAMADI!!!\n")
+        kayitsorgu.kayitSorgu(im, tcNum)
     elif (sorgu == 3):
         os.system("cls || clear")
         odaNo = int(input("\nOda Numaranızı Giriniz: "))
-        rezervbitir.rezervSil(musteriler, odaNo)
+        rezervbitir.rezervSil(im, baglanti, odaNo)
         os.system("cls || clear")
     elif (sorgu == 4):
         os.system("cls || clear")
@@ -49,15 +52,23 @@ while True:
         os.system("cls || clear")
         sifre = int(input("\nlütfen personel şifresini giriniz: "))
         if(kayitsorgu.personelSorgu(sifre)):
-            print(f"Anlık toplam otel geliri: {gelir}")
-            print(f"Anlık toplam restaurant geliri: {restaurantGelir}")
-            print(f"Anlık net otel geliri: {restaurantGelir + gelir}")
+            f = open("gelir.txt", "w")
+            f.write(f"""                        Anlık toplam otel geliri: {gelir}
+                        Anlık toplam restaurant geliri: {restaurantGelir}
+                        Anlık net otel geliri: {restaurantGelir + gelir}""")
+            print("\nGelir bilgisi raporlandı. Görüntülemek için gelir.txt dosyasını açınız. Ekrana yazdırmak için 1'e basınız...\n")
+            yazdirma = int(input())
+            if (yazdirma == 1):
+                f = open("gelir.txt","r")
+                print(f.read())
         else:
             print("\n!!!ŞİFRE YANLIŞ!!!\n")
         
     elif (sorgu == 99):
         os.system("cls || clear")
+        baglanti.close()
         break
     else:
         os.system("cls || clear")
         print("\n!!!HATALI TUŞLAMA YAPTINIZ!!!\n")
+

@@ -1,9 +1,11 @@
 import os
-def rezervSil(musteriler, odaNum):
-    for i in range(len(musteriler)):
-        if (musteriler[i].odaNo == odaNum):
-            musteriler.pop(i)
-        else:
-            os.system("cls || clear")
-            print("\n!!KAYIT BULUNAMADI!!")
+def rezervSil(im, baglanti, odaNum):
+    im.execute(f"SELECT * FROM musteriler WHERE ODANO = '{odaNum}'")
+    data = im.fetchall()
+    if (len(data) != 0):
+        im.execute(f"DELETE FROM musteriler WHERE ODANO = '{odaNum}'")
+        baglanti.commit()
+    else:
+        os.system("cls || clear")
+        print("\n!!KAYIT BULUNAMADI!!")
 
