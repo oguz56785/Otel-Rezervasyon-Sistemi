@@ -5,6 +5,7 @@ def rezervSil(im, baglanti, odaNum):
     if (len(data) != 0):
         im.execute(f"DELETE FROM musteriler WHERE ODANO = '{odaNum}'")
         baglanti.commit()
+        print("\nMÜŞTERİ KAYDI BAŞARIYLA SİLİNDİ!!\n")
     else:
         os.system("cls || clear")
         print("\n!!KAYIT BULUNAMADI!!")

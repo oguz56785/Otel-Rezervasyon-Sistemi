@@ -40,13 +40,12 @@ while True:
         os.system("cls || clear")
         odaNo = int(input("\nOda Numaranızı Giriniz: "))
         rezervbitir.rezervSil(im, baglanti, odaNo)
-        os.system("cls || clear")
     elif (sorgu == 4):
         os.system("cls || clear")
         hesap = restaurant.istek(anlikGelir)
         anlikGelir = 0
         restaurantGelir = restaurantGelir + hesap
-        print(f"Hesabınız: {hesap}")
+        print(f"Hesabınız: {hesap} TL")
         hesap = 0
     elif (sorgu == 5):
         os.system("cls || clear")

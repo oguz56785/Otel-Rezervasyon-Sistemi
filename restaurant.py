@@ -211,7 +211,6 @@ def istek(restaurantGelir):
                     print("\n!!!HATALI TUŞLAMA YAPTINIZ!!!\n")
             os.system("cls || clear")
         elif (secim == 99):
-            print(restaurantGelir)
             break
         else:
             os.system("cls || clear")
